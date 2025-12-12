@@ -229,14 +229,14 @@ def send_to_contact(driver, wait, phone_number, message=None, image_files=None, 
             try:
                 # Click attach button
                 attach_button = wait.until(EC.element_to_be_clickable(
-                    (By.XPATH, "//div[@title='Attach']")
+                    (By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div/div/div[1]/div/span/button')
                 ))
                 attach_button.click()
                 time.sleep(1.5)
                 
                 # Click "Photos & videos" option
                 photo_video_option = wait.until(EC.element_to_be_clickable(
-                    (By.XPATH, "//button[@aria-label='Photos & videos']")
+                    (By.XPATH, '//*[@id="app"]/div/div/span[6]/div/ul/div/div/div[2]/li/div')
                 ))
                 photo_video_option.click()
                 time.sleep(1)
@@ -250,7 +250,7 @@ def send_to_contact(driver, wait, phone_number, message=None, image_files=None, 
                 
                 # Click send button
                 send_button = wait.until(EC.element_to_be_clickable(
-                    (By.XPATH, "//span[@data-icon='send']")
+                    (By.XPATH, '//*[@id="app"]/div/div/div[3]/div/div[3]/div[2]/div/span/div/div/div/div[2]/div/div[2]/div[2]/span/div/div')
                 ))
                 send_button.click()
                 success_count += 1
