@@ -16,6 +16,55 @@ import json
 PROGRESS_FILE = "whatsapp_progress.json"
 SENT_CONTACTS_FILE = "sent_contacts.json"
 
+def initialize_chrome_driver():
+    """
+    Initialize Chrome driver with robust options to prevent crashes.
+    """
+    print("🔧 Initializing Chrome driver...")
+    
+    options = webdriver.ChromeOptions()
+    
+    # User data directory (for session persistence)
+    user_data_dir = os.path.abspath("whatsapp_session")
+    if not os.path.exists(user_data_dir):
+        os.makedirs(user_data_dir)
+        print(f"   ✓ Created session directory: {user_data_dir}")
+    
+    options.add_argument(f"--user-data-dir={user_data_dir}")
+    
+    # Critical options to prevent Chrome crashes
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--disable-extensions")
+    
+    # Additional stability options
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--start-maximized")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-notifications")
+    
+    # Prevent detection
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    
+    # Set page load strategy
+    options.page_load_strategy = 'normal'
+    
+    try:
+        driver = webdriver.Chrome(options=options)
+        print("   ✓ Chrome driver initialized successfully")
+        return driver
+    except Exception as e:
+        print(f"   ❌ Failed to initialize Chrome: {e}")
+        print("\n   Troubleshooting tips:")
+        print("   1. Close all Chrome windows and try again")
+        print("   2. Delete 'whatsapp_session' folder and try again")
+        print("   3. Update Chrome browser to latest version")
+        print("   4. Update ChromeDriver to match your Chrome version")
+        raise
+
 def save_sent_contact(phone_number):
     """Add a phone number to the sent contacts list."""
     sent_contacts = load_sent_contacts()
@@ -345,20 +394,15 @@ def send_whatsapp_from_pdf(pdf_file, message, image_folder=None, start_index=0, 
             print("❌ Cancelled by user.")
             return False
         
-        # Initialize Chrome driver
-        print("\n🔧 Initializing Chrome driver...")
-        options = webdriver.ChromeOptions()
-        options.add_argument("--user-data-dir=./whatsapp_session")
-        options.add_argument("--disable-blink-features=AutomationControlled")
-        driver = webdriver.Chrome(options=options)
-        driver.maximize_window()
+        # Initialize Chrome driver with new function
+        driver = initialize_chrome_driver()
         
         # Open WhatsApp Web
         print("🌐 Opening WhatsApp Web...")
         driver.get("https://web.whatsapp.com")
         
         print("📱 Please scan the QR code if prompted...")
-        wait = WebDriverWait(driver, 60)
+        wait = WebDriverWait(driver, 900)
         
         # Wait for WhatsApp to load
         try:
@@ -492,23 +536,9 @@ if __name__ == "__main__":
     image_folder = "images/"
     
     # OPTION 1: Resume from where it crashed (automatically)
-    
     send_whatsapp_from_pdf(
         pdf_file=pdf_file,
         message=message,
         image_folder=image_folder,
         resume=True  # This will prompt to resume from last crash
     )
-    
-    
-    # OPTION 2: Start from specific person (e.g., person 193)
-    """
-    send_whatsapp_from_pdf(
-        pdf_file=pdf_file,
-        message=message,
-        image_folder=image_folder,
-        start_index=192,  # Person 193 (0-indexed, so 192)
-        resume=False
-    )
-    """
-    
