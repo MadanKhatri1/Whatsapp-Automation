@@ -308,14 +308,14 @@ def send_whatsapp_from_pdf(pdf_file, message, image_folder=None, start_index=0, 
             save_progress(actual_index + 1, len(phone_numbers), success_count, failed_count, [])
             
             # --- 1 HOUR WAIT LOGIC (UPDATED TO 100) ---
-            # If we have processed 100 contacts in this session, pause for 1 hour 30 minutes
+            # If we have processed 100 contacts in this session, pause for 1 hour
             if idx > 0 and idx % 100 == 0 and idx < len(contacts_to_process):
                 print("\n" + "="*50)
                 print(f"⏳ 100 MESSAGES SENT. PAUSING FOR 1 HOUR.")
                 print(f"   Current Time: {time.strftime('%H:%M:%S')}")
                 print(f"   Will resume at: {time.strftime('%H:%M:%S', time.localtime(time.time() + 3600))}")
                 print("="*50 + "\n")
-                time.sleep(7600)  # Sleep for 7600 seconds (1 Hour 30 minutes)
+                time.sleep(7200)  # Sleep for 3600 seconds (1 Hour)
             else:
                 # Normal short delay between messages
                 time.sleep(2)
