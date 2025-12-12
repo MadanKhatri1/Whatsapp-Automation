@@ -53,16 +53,6 @@ Before you begin, ensure you have the following installed:
 
 - **Python 3.7+** - [Download Python](https://www.python.org/downloads/)
 - **Google Chrome** - Latest version recommended
-- **ChromeDriver** - Compatible with your Chrome version
-  - Download from [ChromeDriver Downloads](https://chromedriver.chromium.org/downloads)
-  - Or install via package manager:
-    ```bash
-    # Ubuntu/Debian
-    sudo apt-get install chromium-chromedriver
-    
-    # macOS
-    brew install chromedriver
-    ```
 
 ### Step 1: Clone the Repository
 
@@ -82,14 +72,6 @@ pip install selenium pandas PyPDF2
 - `pandas` - Data manipulation (optional, for advanced contact management)
 - `PyPDF2` - PDF parsing for contact extraction
 
-### Step 3: Setup ChromeDriver
-
-Ensure ChromeDriver is in your system PATH, or place it in the project directory.
-
-```bash
-# Verify ChromeDriver installation
-chromedriver --version
-```
 
 ## 🚀 Quick Start
 
