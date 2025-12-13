@@ -1,6 +1,6 @@
 # 🚀 WhatsApp Automation Suite
 
-![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.13+-blue.svg)
 ![Selenium](https://img.shields.io/badge/Selenium-WebDriver-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
@@ -51,7 +51,7 @@ A powerful and intelligent **WhatsApp Web automation toolkit** built with Python
 
 Before you begin, ensure you have the following installed:
 
-- **Python 3.7+** - [Download Python](https://www.python.org/downloads/)
+- **Python 3.10+** - [Download Python](https://www.python.org/downloads/)
 - **Google Chrome** - Latest version recommended
 
 ### Step 1: Clone the Repository
