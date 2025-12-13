@@ -14,6 +14,12 @@ A powerful and intelligent **WhatsApp Web automation toolkit** built with Python
 - **Image Attachment Support**: Bulk send images (JPG, PNG, JPEG) along with messages
 - **Multi-line Message Support**: Preserve formatting with line breaks using Shift+Enter
 
+### 👥 Group Creation Automation
+- **Bulk Group Creation**: Create multiple WhatsApp groups automatically
+- **Batch Member Addition**: Add contacts to groups in configurable batches
+- **Welcome Messaging**: Automatically send welcome messages and images to new groups
+- **Crash Prevention**: Smart refresh logic to manage memory usage during large batch operations
+
 ### 🔄 Advanced Progress Management
 - **Resume Capability**: Pause and resume campaigns without losing progress
 - **Duplicate Prevention**: Tracks sent contacts to avoid duplicate messages
